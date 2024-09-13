@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  api:
+    image: fbpushd:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - MODE=production
+      - PORT=8080
+    volumes:
+      - ./keys.json:/app/keys.json
+    restart: unless-stopped

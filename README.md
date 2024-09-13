@@ -57,9 +57,7 @@ This microservice allows you to send push notifications to specific device token
 
 ## Configuration
 
-You need to provide your Firebase Admin SDK credentials to send push notifications. Add your `keys.json` file to the root of the project or another location.
-
-Make sure the environment variable `GOOGLE_APPLICATION_CREDENTIALS` points to your Firebase credentials file.
+You need to provide your Firebase Admin SDK credentials to send push notifications. Add your `keys.json` file to the root of the project.
 
 ## Running the Application
 
