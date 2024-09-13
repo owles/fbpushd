@@ -30,6 +30,20 @@ This microservice allows you to send push notifications to specific device token
 
 ## Installation
 
+### Run from Docker Hub
+
+```sh 
+docker run \
+  -u "$UID" \
+  -p 8080:8080 \
+  -v $(pwd)/keys.json:/app/keys.json \
+  -e MODE=production \
+  -e PORT=8080 \
+  owles/fbpushd:latest
+```
+
+### Build from source
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/fbpushd.git
