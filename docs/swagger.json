@@ -1,0 +1,115 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "A simple API to send push notifications using Firebase",
+        "title": "Firebase Push Notification API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "0.0.0.0:8080",
+    "basePath": "/",
+    "paths": {
+        "/push": {
+            "post": {
+                "description": "Send push notifications to specific tokens using Firebase Cloud Messaging.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "push"
+                ],
+                "summary": "Send push notifications",
+                "parameters": [
+                    {
+                        "description": "Push Request",
+                        "name": "requests",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/api.PushRequest"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/api.PushResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.PushRequest": {
+            "type": "object",
+            "required": [
+                "push",
+                "token"
+            ],
+            "properties": {
+                "push": {
+                    "type": "object",
+                    "properties": {
+                        "body": {
+                            "type": "string"
+                        },
+                        "data": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.PushResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

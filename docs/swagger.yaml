@@ -1,0 +1,76 @@
+basePath: /
+definitions:
+  api.ErrorResponse:
+    properties:
+      message:
+        type: string
+      result:
+        type: string
+    type: object
+  api.PushRequest:
+    properties:
+      push:
+        properties:
+          body:
+            type: string
+          data:
+            additionalProperties:
+              type: string
+            type: object
+          title:
+            type: string
+        type: object
+      token:
+        type: string
+    required:
+    - push
+    - token
+    type: object
+  api.PushResponse:
+    properties:
+      success:
+        type: boolean
+      token:
+        type: string
+    type: object
+host: 0.0.0.0:8080
+info:
+  contact: {}
+  description: A simple API to send push notifications using Firebase
+  title: Firebase Push Notification API
+  version: "1.0"
+paths:
+  /push:
+    post:
+      consumes:
+      - application/json
+      description: Send push notifications to specific tokens using Firebase Cloud
+        Messaging.
+      parameters:
+      - description: Push Request
+        in: body
+        name: requests
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/api.PushRequest'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/api.PushResponse'
+            type: array
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/api.ErrorResponse'
+      summary: Send push notifications
+      tags:
+      - push
+schemes:
+- http
+swagger: "2.0"

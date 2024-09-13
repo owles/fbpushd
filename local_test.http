@@ -1,0 +1,13 @@
+POST {{baseUri}}/push
+Content-Type: application/json
+
+[
+  {
+    "token": "{{token}}",
+    "push": {
+      "data": {"key": "value"},
+      "title": "Test Notification",
+      "body": "This is a test"
+    }
+  }
+]
